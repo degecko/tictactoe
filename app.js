@@ -90,7 +90,7 @@ new Vue({
 
     watch: {
         moves () {
-            if (this.moves === 9) {
+            if (this.moves === Math.pow(this.matrix.length, 2)) {
                 this.winner = 'Nobody';
             }
         },

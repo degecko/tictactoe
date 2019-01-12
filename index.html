@@ -1,0 +1,23 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="style.less">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="winner">Game Over! Winner: <strong>{{ winner }}</strong></div>
+        <table v-else>
+            <tr><td colspan="10">Player: {{ player }}</td></tr>
+            <tr v-for="(row, ri) in matrix">
+                <td v-for="(cell, ci) in row">
+                    <div @click="toggle(ri, ci)" :class="{ available: ! toggled(ri, ci) }" v-text="matrix[ri][ci]"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

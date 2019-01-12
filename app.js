@@ -5,7 +5,7 @@ new Vue({
         player: 'X',
         winner: null,
         moves: 0,
-        matrix: 4,
+        matrix: null,
     },
 
     methods: {
@@ -67,6 +67,25 @@ new Vue({
                 }
             }
         },
+
+        reset () {
+            const hash = location.hash.substr(1);
+            const size = Math.max(2, isNaN(hash) || ! hash ? 3 : parseInt(hash));
+
+            this.matrix = [];
+
+            for (let i = 0; i < size; i++) {
+                this.matrix[i] = [];
+
+                for (let j = 0; j < size; j++) {
+                    this.matrix[i][j] = null;
+                }
+            }
+
+            this.player = 'X';
+            this.winner = null;
+            this.moves = 0;
+        },
     },
 
     watch: {
@@ -78,16 +97,6 @@ new Vue({
     },
 
     beforeMount () {
-        const size = this.matrix + 0;
-
-        this.matrix = [];
-
-        for (let i = 0; i < size; i++) {
-            this.matrix[i] = [];
-            
-            for (let j = 0; j < size; j++) {
-                this.matrix[i][j] = null;
-            }
-        }
+        this.reset();
     },
 });

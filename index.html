@@ -6,12 +6,15 @@
 </head>
 <body>
     <div id="app">
-        <div v-if="winner">Game Over! Winner: <strong>{{ winner }}</strong></div>
+        <div v-if="winner">
+            <p>Game Over! Winner: <strong>{{ winner }}</strong></p>
+            <button @click="reset()">Play Again</button>
+        </div>
         <table v-else>
             <tr><td colspan="10">Player: {{ player }}</td></tr>
             <tr v-for="(row, ri) in matrix">
                 <td v-for="(cell, ci) in row">
-                    <div @click="toggle(ri, ci)" :class="{ available: ! toggled(ri, ci) }" v-text="matrix[ri][ci]"></div>
+                    <div @click="toggle(ri, ci)" :class="[toggled(ri, ci) ? matrix[ri][ci] : 'available']" v-text="matrix[ri][ci]"></div>
                 </td>
             </tr>
         </table>
